@@ -21,8 +21,10 @@ partition setup.
 
 ```bash
 chmod +x pearl-miner-terminal.sh
-./pearl-miner-terminal.sh --wallet "YOUR_PRL_WALLET"
+./pearl-miner-terminal.sh --host 129.226.55.135:9000 --user "YOUR_PRL_WALLET"
 ```
+
+You can also use `--wallet` as an alias for `--user`.
 
 Optional:
 

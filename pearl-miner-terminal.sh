@@ -27,11 +27,13 @@ ACTION="run"
 usage() {
   cat <<USAGE
 Usage:
+  $(basename "$0") --user <PRL_WALLET> [options]
   $(basename "$0") --wallet <PRL_WALLET> [options]
   WALLET=<PRL_WALLET> $(basename "$0") [options]
 
 Options:
-  --wallet <value>       Wallet/address to mine to. Required for --run.
+  --user <value>         Wallet/address to mine to. Matches the miner original flag.
+  --wallet <value>       Alias for --user.
   --host <host:port>     Pool host. Default from ISO: $DEFAULT_HOST
   --miner-url <url>      Miner download URL. Default from ISO: $DEFAULT_MINER_URL
   --home <dir>           Working dir. Default: ~/.pearl-miner-terminal
@@ -63,8 +65,8 @@ need_cmd() {
 parse_args() {
   while [ $# -gt 0 ]; do
     case "$1" in
-      --wallet)
-        [ $# -ge 2 ] || { echo "--wallet needs a value" >&2; exit 2; }
+      --user|--wallet)
+        [ $# -ge 2 ] || { echo "--user/--wallet needs a value" >&2; exit 2; }
         WALLET="$2"; shift 2 ;;
       --host)
         [ $# -ge 2 ] || { echo "--host needs a value" >&2; exit 2; }
@@ -152,7 +154,7 @@ stop_miner() {
 
 run_miner() {
   if [ -z "$WALLET" ]; then
-    echo "Missing wallet. Pass --wallet <PRL_WALLET> or set WALLET=..." >&2
+    echo "Missing wallet. Pass --user <PRL_WALLET>, --wallet <PRL_WALLET>, or set WALLET=..." >&2
     exit 2
   fi
 
