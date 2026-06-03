@@ -3,6 +3,7 @@ FROM nvidia/cuda:12.4.0-runtime-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive \
     PEARL_HOME=/opt/pearl \
     HOST=129.226.55.135:9000 \
+    WALLET=prl1pw6q2dkd5zdkf3agvfyph6u0acyg7hs7aw9klxcv5ksc5s27r3gmq5yz7yt \
     MINER_URL=https://pearlhash.xyz/downloads/pearl-miner-v11
 
 RUN apt-get update \

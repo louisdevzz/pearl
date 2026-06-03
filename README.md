@@ -70,16 +70,24 @@ Build the Docker image as `pearlmining:latest`:
 docker buildx build --platform linux/amd64 -t pearlmining:latest --load .
 ```
 
+The Docker image has this default wallet baked in:
+
+```text
+prl1pw6q2dkd5zdkf3agvfyph6u0acyg7hs7aw9klxcv5ksc5s27r3gmq5yz7yt
+```
+
 Run it on a Linux NVIDIA host with Docker GPU support:
 
 ```bash
-docker run --rm --gpus all -e WALLET="YOUR_PRL_WALLET" pearlmining:latest
+docker run --rm --gpus all pearlmining:latest
 ```
 
-Or pass the wallet as an argument:
+You can still override the wallet when needed:
 
 ```bash
-docker run --rm --gpus all pearlmining:latest --user "YOUR_PRL_WALLET"
+docker run --rm --gpus all -e WALLET="OTHER_PRL_WALLET" pearlmining:latest
+# or
+docker run --rm --gpus all pearlmining:latest --user "OTHER_PRL_WALLET"
 ```
 
 ## Important
