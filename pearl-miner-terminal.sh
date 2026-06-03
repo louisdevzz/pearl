@@ -44,6 +44,7 @@ Options:
   --help                Show this help.
 
 Important:
+  - Downloads with curl if available, otherwise falls back to wget.
   - The ISO miner is a Linux NVIDIA/CUDA miner. It will not mine on macOS or
     on machines without NVIDIA drivers/GPU.
   - On this Mac, use --status or --download-only only if you just want to inspect.
@@ -53,13 +54,6 @@ USAGE
 log() {
   mkdir -p "$APP_DIR"
   printf '%s %s\n' "$(date '+%F %T')" "$*" | tee -a "$LOG_FILE"
-}
-
-need_cmd() {
-  command -v "$1" >/dev/null 2>&1 || {
-    echo "Missing required command: $1" >&2
-    exit 1
-  }
 }
 
 parse_args() {
@@ -123,11 +117,17 @@ download_miner() {
     return 0
   fi
 
-  need_cmd curl
   tmp="$MINER_PATH.part"
   log "Downloading miner from: $MINER_URL"
   rm -f "$tmp"
-  curl -L --fail --retry 8 --retry-delay 3 --connect-timeout 25 "$MINER_URL" -o "$tmp"
+  if command -v curl >/dev/null 2>&1; then
+    curl -L --fail --retry 8 --retry-delay 3 --connect-timeout 25 "$MINER_URL" -o "$tmp"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -O "$tmp" "$MINER_URL"
+  else
+    echo "Missing required command: curl or wget" >&2
+    exit 1
+  fi
 
   size="$(wc -c < "$tmp" | tr -d ' ')"
   if [ "${size:-0}" -lt 100000 ]; then

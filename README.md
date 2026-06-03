@@ -26,6 +26,8 @@ chmod +x pearl-miner-terminal.sh
 
 You can also use `--wallet` as an alias for `--user`.
 
+The script downloads the miner with `curl` if available, otherwise it falls back to `wget`.
+
 Optional:
 
 ```bash
