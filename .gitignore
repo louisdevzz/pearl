@@ -1,0 +1,6 @@
+.DS_Store
+iso_extracted/
+*.iso
+*.part
+pearl-miner
+.pearl-miner-terminal/

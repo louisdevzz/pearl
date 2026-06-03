@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=▶ Pearl Miner
+Comment=Mở màn hình mining (IP + trạng thái) nếu chưa tự chạy
+Exec=/opt/pearl/launch-terminal.sh
+Icon=utilities-terminal
+Terminal=false
+Categories=Utility;

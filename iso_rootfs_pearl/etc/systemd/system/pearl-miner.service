@@ -1,0 +1,16 @@
+[Unit]
+Description=Pearl Miner (PRL)
+# KHÔNG tự chạy lúc boot — khởi động qua nút ĐÀO trên dashboard.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /opt/pearl/run-miner.sh
+Restart=always
+RestartSec=8
+KillMode=control-group
+TimeoutStopSec=5
+LimitNOFILE=1048576
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target

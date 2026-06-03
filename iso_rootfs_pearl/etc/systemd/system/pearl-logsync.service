@@ -1,0 +1,11 @@
+[Unit]
+Description=Pearl black-box log sync to PEARLLOG partition
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /opt/pearl/pearl-logsync.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

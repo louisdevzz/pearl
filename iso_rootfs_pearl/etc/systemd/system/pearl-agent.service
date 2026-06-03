@@ -1,0 +1,12 @@
+[Unit]
+Description=Pearl rig agent (heartbeat + remote control via relay)
+After=pearl-web.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /opt/pearl/pearl-agent.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Pearl Status
+Comment=Hiện IP + trạng thái mining trên màn hình rig
+Exec=/opt/pearl/launch-terminal.sh
+Terminal=false
+X-GNOME-Autostart-enabled=true
+NoDisplay=true

@@ -1,0 +1,14 @@
+[Unit]
+Description=Pearl Web Dashboard (cấu hình ví qua LAN)
+# KHÔNG chờ network-online (tránh treo ~vài phút lúc boot live).
+# Server bind 0.0.0.0 nên lên ngay; IP hiện khi DHCP cấp xong.
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/pearl/pearl-web
+ExecStart=/bin/bash -c 'if [ -f /opt/pearl/pearl-web/app.pyc ]; then exec python3 /opt/pearl/pearl-web/app.pyc; else exec python3 /opt/pearl/pearl-web/app.py; fi'
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

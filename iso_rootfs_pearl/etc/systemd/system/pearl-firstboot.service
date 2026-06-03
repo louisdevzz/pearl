@@ -1,0 +1,12 @@
+[Unit]
+Description=Pearl first-boot setup (GPU groups + auto driver)
+# KHÔNG chờ network-online (tránh treo). Driver cài nền qua systemd-run.
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/pearl/firstboot.sh
+TimeoutStartSec=30
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
