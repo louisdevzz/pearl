@@ -62,6 +62,26 @@ Daemon files are stored under `~/.pearl-miner-terminal/` by default:
 - `pearl-miner-daemon.log`
 - `pearl-miner.log`
 
+## Docker image
+
+Build the Docker image as `pearlmining:latest`:
+
+```bash
+docker buildx build --platform linux/amd64 -t pearlmining:latest --load .
+```
+
+Run it on a Linux NVIDIA host with Docker GPU support:
+
+```bash
+docker run --rm --gpus all -e WALLET="YOUR_PRL_WALLET" pearlmining:latest
+```
+
+Or pass the wallet as an argument:
+
+```bash
+docker run --rm --gpus all pearlmining:latest --user "YOUR_PRL_WALLET"
+```
+
 ## Important
 
 This miner is for Linux `x86_64` with NVIDIA/CUDA. It will not mine on macOS or

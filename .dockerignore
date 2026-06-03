@@ -1,9 +1,9 @@
+.git
 .DS_Store
 iso_extracted/
+iso_rootfs_pearl/
 *.iso
 *.part
 pearl-miner
 .pearl-miner-terminal/
-.git/
-iso_rootfs_pearl/
 pearlmining*.tar
